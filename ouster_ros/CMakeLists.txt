@@ -27,6 +27,11 @@ catkin_package(
   CATKIN_DEPENDS pcl_ros pcl_conversions roscpp message_runtime std_msgs sensor_msgs
 )
 
+if (CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+  add_rostest(tests/os1_replay.test)
+endif()
+
 add_library(ouster_ros STATIC src/os1_ros.cpp)
 target_link_libraries(ouster_ros ${catkin_LIBRARIES})
 add_dependencies(ouster_ros ${PROJECT_NAME}_gencpp)
