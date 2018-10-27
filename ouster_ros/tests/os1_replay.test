@@ -2,7 +2,7 @@
 
 <launch>
 
-   <arg name="bag_file" default="/home/wil/Downloads/2018-08-29-16-46-17_0.bag"/>
+   <arg name="bag_file" default="$(find ouster_ros)/tests/2018-08-29-16-46-17_0.bag"/>
 
    <node pkg="rosbag" type="play" name="rosbag_player" output="screen"
      args="$(arg bag_file) --clock" >
