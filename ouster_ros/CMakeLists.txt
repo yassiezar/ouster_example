@@ -56,8 +56,8 @@ add_library(ouster_ros STATIC src/os1_ros.cpp)
 target_link_libraries(ouster_ros ${catkin_LIBRARIES})
 add_dependencies(ouster_ros ${PROJECT_NAME}_gencpp)
 
-#add_executable(pc2_test src/pc2_test.cpp)
-#target_link_libraries(pc2_test ${catkin_LIBRARIES})
+add_executable(pc2_test src/pc2_test.cpp)
+target_link_libraries(pc2_test ${catkin_LIBRARIES})
 
 add_executable(os1_node src/os1_node.cpp)
 target_link_libraries(os1_node ouster_ros ${catkin_LIBRARIES})
