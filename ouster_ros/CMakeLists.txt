@@ -70,4 +70,3 @@ target_link_libraries(viz_node ${catkin_LIBRARIES})
 
 add_executable(img_node src/img_node.cpp)
 target_link_libraries(img_node ouster_ros ${catkin_LIBRARIES})
->>>>>>> upstream/master
