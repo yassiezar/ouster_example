@@ -45,14 +45,14 @@ catkin_package(
 
 if (CATKIN_ENABLE_TESTING)
 
-#  find_package(rostest REQUIRED)
-#  add_rostest(tests/os1_replay.test)
+  find_package(rostest REQUIRED)
+  add_rostest(tests/os1_replay.test)
 
 #  catkin_download_test_data(
 #	${PROJECT_NAME}_test.bag
-#	https://data.ouster.io/sample-data-2018-08-29/2018-08-29-16-46-17_2.bag
+#	https://data.ouster.io/sample-data-1.10/2019-03-26-21-15-45_0.bag
 #	DESTINATION ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/tests
-#	MD5 78ef679d4aede50a6725ad303de63d75)
+#	MD5 2dc106b0e59a04365c5d395828db456d)
 
 endif()
 
