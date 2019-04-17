@@ -2,7 +2,7 @@
 
 <launch>
 
-   <arg name="bag_file" default="$(find ouster_ros)/tests/2018-08-29-16-46-17_0.bag"/>
+   <arg name="bag_file" default="$(find ouster_ros)/tests/test.bag"/>
 
    <node pkg="rosbag" type="play" name="rosbag_player" output="screen"
      args="$(arg bag_file) --clock" >
@@ -10,26 +10,29 @@
 
    <include file="$(find ouster_ros)/os1.launch">
       <arg name="replay" default="true"/>
+      <arg name="image" default="true"/>
    </include>
 
 <!-- Test ROS Topic Frequency
 Topics (expected hz):
-
-/os1_node/imu (100hz)                                                     
-/os1_node/imu_packets (100hz)                                             
+/img_node/intensity_image (10hz)
+/img_node/noise_image (10hz)
+/img_node/range_image (10hz)
+/os1_cloud_node/imu (100hz)
+/os1_cloud_node/points (10hz)
+/os1_node/imu_packets (100hz)
 /os1_node/lidar_packets (~640hz)
-/os1_node/points (10hz)
 -->
 
-   <test test-name="os1imuHzTest_points" pkg="rostest" type="hztest" name="imuHz">
-      <param name="topic" value="/os1_node/imu" />
+   <test test-name="os1_replay_HzTest_imu" pkg="rostest" type="hztest" name="imuHz">
+      <param name="topic" value="/os1_cloud_node/imu" />
       <param name="hz" value="100" />
       <param name="hzerror" value="10" />
       <param name="test_duration" value="5.0" />
       <param name="wait_time" value="2.0" />
    </test>
 
-   <test test-name="os1imupacketsHzTest_points" pkg="rostest" type="hztest" name="imupacketsHz">
+   <test test-name="os1_replay_HzTest_imu_packets" pkg="rostest" type="hztest" name="imupacketsHz">
       <param name="topic" value="/os1_node/imu_packets" />
       <param name="hz" value="100" />
       <param name="hzerror" value="5" />
@@ -37,7 +40,7 @@ Topics (expected hz):
       <param name="wait_time" value="2.0" />
    </test>
 
-   <test test-name="os1lidarpacketsHzTest_points" pkg="rostest" type="hztest" name="lidarpacketsHz">
+   <test test-name="os1_replay_HzTest_lidar_packets" pkg="rostest" type="hztest" name="lidarpacketsHz">
       <param name="topic" value="/os1_node/lidar_packets" />
       <param name="hz" value="640" />
       <param name="hzerror" value="20" />
@@ -45,8 +48,32 @@ Topics (expected hz):
       <param name="wait_time" value="2.0" />
    </test>
 
-   <test test-name="os1pointsHzTest_points" pkg="rostest" type="hztest" name="pointsHz">
-      <param name="topic" value="/os1_node/points" />
+   <test test-name="os1_replay_HzTest_points" pkg="rostest" type="hztest" name="pointsHz">
+      <param name="topic" value="/os1_cloud_node/points" />
+      <param name="hz" value="10" />
+      <param name="hzerror" value="2" />
+      <param name="test_duration" value="5.0" />
+      <param name="wait_time" value="2.0" />
+   </test>
+
+   <test test-name="os1_replay_HzTest_intensity" pkg="rostest" type="hztest" name="pointsHz">
+      <param name="topic" value="/img_node/intensity_image" />
+      <param name="hz" value="10" />
+      <param name="hzerror" value="2" />
+      <param name="test_duration" value="5.0" />
+      <param name="wait_time" value="2.0" />
+   </test>
+
+   <test test-name="os1_replay_HzTest_noise" pkg="rostest" type="hztest" name="pointsHz">
+      <param name="topic" value="/img_node/noise_image" />
+      <param name="hz" value="10" />
+      <param name="hzerror" value="2" />
+      <param name="test_duration" value="5.0" />
+      <param name="wait_time" value="2.0" />
+   </test>
+
+   <test test-name="os1_replay_HzTest_range" pkg="rostest" type="hztest" name="pointsHz">
+      <param name="topic" value="/img_node/range_image" />
       <param name="hz" value="10" />
       <param name="hzerror" value="2" />
       <param name="test_duration" value="5.0" />
@@ -62,7 +89,7 @@ Params:
 /os1_node/replay
 /os1_node/scan_dur_ns
 
-   <test test-name="os1GazeboParamTest_robot_description" pkg="rostest" type="paramtest" name="robot_descriptionParam" >
+<test test-name="os1GazeboParamTest_robot_description" pkg="rostest" type="paramtest" name="robot_descriptionParam" >
       <param name="param_name_target" value="robot_description" />
       <param name="test_duration" value="10.0" />
       <param name="wait_time" value="60.0" />
