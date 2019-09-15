@@ -47,6 +47,6 @@ echo "downloading example data"
 cd ~
 mkdir bags
 cd bags
-wget -nv https://data.ouster.io/sample-data-2018-08-29/2018-08-29-16-46-17_0.bag
+#wget -nv https://data.ouster.io/sample-data-2018-08-29/2018-08-29-16-46-17_0.bag
 echo "download complete"
 
