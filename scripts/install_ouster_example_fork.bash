@@ -43,10 +43,10 @@ echo "built the sample ROS node"
 source $HOME/catkin_ws/devel/setup.bash
 
 # get example data
-echo "downloading example data"
-cd ~
-mkdir bags
-cd bags
+#echo "downloading example data"
+#cd ~
+#mkdir bags
+#cd bags
 #wget -nv https://data.ouster.io/sample-data-2018-08-29/2018-08-29-16-46-17_0.bag
-echo "download complete"
+#echo "download complete"
 
