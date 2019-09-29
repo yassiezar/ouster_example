@@ -27,6 +27,7 @@ RUN apt-get update \
     libxext6 \
     libx11-6 \
     tmux \
+    xdg-utils \
     eog \
  && rm -rf /var/lib/apt/lists/*
 
