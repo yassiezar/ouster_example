@@ -26,9 +26,6 @@ fi
 
 # Google Cartographer commands
 
-# Run all commands from the /root/bags directory
-# cd /root/bags
-
 # Get sample data
 # cd /root/bags
 # curl -O https://selbystorage.s3-us-west-2.amazonaws.com/Files/office_demo_9_25_19.bag
@@ -36,30 +33,33 @@ fi
 # Source the workspace
 # source /root/catkin_ws/devel/setup.bash
 
+# Navigate to the cartographer_ros launch file directory
+# cd /root/catkin_ws/src/ouster_example/cartogrpaher_ros/launch
+
 ## Validate rosbag
 #rosrun cartographer_ros cartographer_rosbag_validate -bag_filename /root/bags/office_demo_9_25_19.bag
 
 ## Run 2D online
-#roslaunch cartographer_ros demo_cart_2d.launch bag_filename:=/root/bags/office_demo_9_25_19.bag
+#roslaunch demo_cart_2d.launch bag_filename:=/root/bags/office_demo_9_25_19.bag
 
 ## Run 2D offline (to generate .pbstream file)
-#roslaunch cartographer_ros offline_cart_2d.launch bag_filenames:=/root/bags/office_demo_9_25_19.bag
+#roslaunch offline_cart_2d.launch bag_filenames:=/root/bags/office_demo_9_25_19.bag
 
 ## Run 2D assets_writer
-#roslaunch cartographer_ros assets_writer_cart_2d.launch bag_filenames:=/root/bags/office_demo_9_25_19.bag  pose_graph_filename:=/root/bags/office_demo_9_25_19.bag.pbstream 
+#roslaunch assets_writer_cart_2d.launch bag_filenames:=/root/bags/office_demo_9_25_19.bag  pose_graph_filename:=/root/bags/office_demo_9_25_19.bag.pbstream 
 
 ## View output pngs
 #xdg-open office_demo_9_25_19.bag_xray_xy_all.png
 #xdg-open office_demo_9_25_19.bag_probability_grid.png
 
 ## Run 3d online
-#roslaunch cartographer_ros demo_cart_3d.launch bag_filename:=/root/bags/office_demo_9_25_19.bag
+#roslaunch demo_cart_3d.launch bag_filename:=/root/bags/office_demo_9_25_19.bag
 
 ## Run 3d offline
-#roslaunch cartographer_ros offline_cart_3d.launch bag_filenames:=/root/bags/office_demo_9_25_19.bag 
+#roslaunch offline_cart_3d.launch bag_filenames:=/root/bags/office_demo_9_25_19.bag 
 
 ## Run 3d assets_writer
-#roslaunch cartographer_ros assets_writer_cart_3d.launch bag_filenames:=/root/bags/office_demo_9_25_19.bag  pose_graph_filename:=/root/bags/office_demo_9_25_19.bag.pbstream 
+#roslaunch assets_writer_cart_3d.launch bag_filenames:=/root/bags/office_demo_9_25_19.bag  pose_graph_filename:=/root/bags/office_demo_9_25_19.bag.pbstream 
 
 #xdg-open office_demo_9_25_19.bag_xray_xy_all.png
 #xdg-open office_demo_9_25_19.bag_probability_grid.png
