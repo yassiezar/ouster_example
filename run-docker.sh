@@ -28,7 +28,7 @@ fi
 
 # Get sample data
 # cd /root/bags
-# curl -O https://selbystorage.s3-us-west-2.amazonaws.com/Files/office_demo_9_25_19.bag
+# curl -O https://data.ouster.io/downloads/office_demo_9_25_19.bag 
 
 # Source the workspace
 # source /root/catkin_ws/devel/setup.bash
