@@ -31,9 +31,9 @@ int main(int argc, char** argv) {
 
     auto tf_prefix = nh.param("tf_prefix", std::string{});
     if (!tf_prefix.empty() && tf_prefix.back() != '/') tf_prefix.append("/");
-    auto sensor_frame = tf_prefix + "os_sensor";
-    auto imu_frame = tf_prefix + "os_imu";
-    auto lidar_frame = tf_prefix + "os_lidar";
+    auto sensor_frame = tf_prefix + "os1_base";
+    auto imu_frame = tf_prefix + "os1_imu";
+    auto lidar_frame = tf_prefix + "os1_lidar";
 
     ouster_ros::OSConfigSrv cfg{};
     auto client = nh.serviceClient<ouster_ros::OSConfigSrv>("os_config");
@@ -78,18 +78,18 @@ int main(int argc, char** argv) {
     };
 
     auto lidar_packet_sub = nh.subscribe<PacketMsg, const PacketMsg&>(
-        "lidar_packets", 2048, lidar_handler);
+        "/os_node/lidar_packets", 2048, lidar_handler);
     auto imu_packet_sub = nh.subscribe<PacketMsg, const PacketMsg&>(
-        "imu_packets", 100, imu_handler);
+        "/os_node/imu_packets", 100, imu_handler);
 
     // publish transforms
-    tf2_ros::StaticTransformBroadcaster tf_bcast{};
+    // tf2_ros::StaticTransformBroadcaster tf_bcast{};
 
-    tf_bcast.sendTransform(ouster_ros::transform_to_tf_msg(
-        info.imu_to_sensor_transform, sensor_frame, imu_frame));
+    // tf_bcast.sendTransform(ouster_ros::transform_to_tf_msg(
+    //     info.imu_to_sensor_transform, sensor_frame, imu_frame));
 
-    tf_bcast.sendTransform(ouster_ros::transform_to_tf_msg(
-        info.lidar_to_sensor_transform, sensor_frame, lidar_frame));
+    // tf_bcast.sendTransform(ouster_ros::transform_to_tf_msg(
+    //     info.lidar_to_sensor_transform, sensor_frame, lidar_frame));
 
     ros::spin();
 
